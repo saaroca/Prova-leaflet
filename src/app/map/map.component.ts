@@ -1,6 +1,6 @@
-import { AfterViewInit, Component } from '@angular/core';
+import { AfterViewInit, Component, Pipe } from '@angular/core';
 import * as L from 'leaflet';
-import { freeBus, lightRailStop, bicycleRental, campus, coorsField } from '../../assets/js/sample-geojson.js';
+import { freeBus,  PuntsInteres, ParcNou, coorsField } from '../../assets/js/sample-geojson.js';
 
 
 @Component({
@@ -10,8 +10,14 @@ import { freeBus, lightRailStop, bicycleRental, campus, coorsField } from '../..
 })
 
 export class MapComponent implements AfterViewInit {
+
   public map;
- 
+
+  mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
+    '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
+    'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
+  mbUrl = 'https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw';
+
   constructor() { }
 
   ngAfterViewInit(): void {
@@ -29,31 +35,35 @@ export class MapComponent implements AfterViewInit {
     layer.bindPopup(popupContent);
   }
 
+
+  MGris = L.tileLayer(this.mbUrl, { id: 'mapbox/light-v9', tileSize: 512, zoomOffset: -1, attribution: this.mbAttr });
+  Carrers = L.tileLayer(this.mbUrl, { id: 'mapbox/streets-v11', tileSize: 512, zoomOffset: -1, attribution: this.mbAttr });
+
   private initMap(): void {
     this.map = L.map('map', {
       center: [42.180835, 2.486769],
+      layers: [this.MGris],
       zoom: 16
     });
 
-    const tiles = 	L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw', {
-      maxZoom: 18,
-      attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
-        '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
-        'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      id: 'mapbox/light-v9',
-      tileSize: 512,
-      zoomOffset: -1
-    });
 
-    tiles.addTo(this.map);
-    L.geoJSON([bicycleRental, campus], {
+    var Mapes = {
+      "Mapa Gris": this.MGris,
+      "Mapa Carrers": this.Carrers
+    };
+
+
+    L.control.layers(Mapes).addTo(this.map);
+
+
+    L.geoJSON([PuntsInteres, ParcNou], {
 
       style: function (feature) {
         return feature.properties && feature.properties.style;
       },
-    
+
       onEachFeature: this.onEachFeature,
-    
+
       pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, {
           radius: 8,
@@ -64,36 +74,36 @@ export class MapComponent implements AfterViewInit {
           fillOpacity: 0.8
         });
       }
-    })
+    }).addTo(this.map);
 
     L.geoJSON(freeBus, {
 
-  filter: function (feature, layer) {
-    if (feature.properties) {
-      // If the property "underConstruction" exists and is true, return false (don't render features under construction)
-      return feature.properties.underConstruction !== undefined ? !feature.properties.underConstruction : true;
-    }
-    return false;
-  },
+      filter: function (feature, layer) {
+        if (feature.properties) {
+          // If the property "underConstruction" exists and is true, return false (don't render features under construction)
+          return feature.properties.underConstruction !== undefined ? !feature.properties.underConstruction : true;
+        }
+        return false;
+      },
 
-  onEachFeature: this.onEachFeature
-}).addTo(this.map);
+      onEachFeature: this.onEachFeature
+    }).addTo(this.map);
 
 
-  const coorsLayer = L.geoJSON(coorsField, {
+    const coorsLayer = L.geoJSON(coorsField, {
 
-    pointToLayer: function (feature, latlng) {
-      return L.marker(latlng, {icon: baseballIcon});
-    },
-  
-    onEachFeature: this.onEachFeature
-  }).addTo(this.map); 
+      pointToLayer: function (feature, latlng) {
+        return L.marker(latlng, { icon: baseballIcon });
+      },
+
+      onEachFeature: this.onEachFeature
+    }).addTo(this.map);
 
   }
 };
 
 var baseballIcon = L.icon({
-  iconUrl: '/Content/images/tenis.jpg',
+  iconUrl: '/assets/images/tenis.jpg',
   iconSize: [32, 37],
   iconAnchor: [16, 37],
   popupAnchor: [0, -28]
