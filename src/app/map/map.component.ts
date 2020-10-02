@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, Pipe } from '@angular/core';
 import * as L from 'leaflet';
-import { freeBus,  PuntsInteres, ParcNou, coorsField } from '../../assets/js/sample-geojson.js';
+import { TPO, PuntsInteres, ParcNou, Icona } from '../../assets/js/sample-geojson.js';
 
 
 @Component({
@@ -76,7 +76,7 @@ export class MapComponent implements AfterViewInit {
       }
     }).addTo(this.map);
 
-    L.geoJSON(freeBus, {
+    L.geoJSON(TPO, {
 
       filter: function (feature, layer) {
         if (feature.properties) {
@@ -90,7 +90,7 @@ export class MapComponent implements AfterViewInit {
     }).addTo(this.map);
 
 
-    const coorsLayer = L.geoJSON(coorsField, {
+    L.geoJSON(Icona, {
 
       pointToLayer: function (feature, latlng) {
         return L.marker(latlng, { icon: baseballIcon });

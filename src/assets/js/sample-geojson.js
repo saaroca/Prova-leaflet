@@ -1,4 +1,4 @@
-var freeBus = {
+var TPO = {
     "type": "FeatureCollection",
     "features": [
         {
@@ -220,7 +220,7 @@ var ParcNou = {
     }
 };
 
-var coorsField = {
+var Icona = {
     "type": "Feature",
     "properties": {
         "popupContent": "Club tenis Olot"
@@ -232,7 +232,7 @@ var coorsField = {
 };
 
 export {
-    freeBus, PuntsInteres, ParcNou, coorsField
+    TPO, PuntsInteres, ParcNou, Icona
 }
 
 
