@@ -5,11 +5,11 @@ import { TPO, PuntsInteres, ParcNou, Icona } from '../../assets/js/sample-geojso
 
 @Component({
   selector: 'app-map',
-  templateUrl: './map.component.html',
+  templateUrl: './map.component.html', 
   styleUrls: ['./map.component.scss']
 })
 
-export class MapComponent implements AfterViewInit {
+export class MapComponent {
 
   public map;
 
@@ -98,8 +98,12 @@ export class MapComponent implements AfterViewInit {
 
       onEachFeature: this.onEachFeature
     }).addTo(this.map);
-
+    
+    L.control.sidebar('sidebar', {
+      position: 'left'
+    }).addTo(this.map);
   }
+
 };
 
 var baseballIcon = L.icon({
