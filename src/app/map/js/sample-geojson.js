@@ -53,31 +53,6 @@ var TPO = {
     ]
 };
 
-// var lightRailStop = {
-//     "type": "FeatureCollection",
-//     "features": [
-//         {
-//             "type": "Feature",
-//             "properties": {
-//                 "popupContent": "Carrer Pare Roca nº 10"
-//             },
-//             "geometry": {
-//                 "type": "Point",
-//                 "coordinates": [2.483448, 42.182054]
-//             }
-//         }, {
-//             "type": "Feature",
-//             "properties": {
-//                 "popupContent": "Carrer Sant Ferriol nº18"
-//             },
-//             "geometry": {
-//                 "type": "Point",
-//                 "coordinates": [2.485959, 42.182308]
-//             }
-//         }
-//     ]
-// };
-
 var PuntsInteres = {
     "type": "FeatureCollection",
     "features": [

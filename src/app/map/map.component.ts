@@ -15,6 +15,8 @@ export class MapComponent {
 
   public map;
   public sidebar;
+  public sidebarPointList;
+
   mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
     '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
     'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
@@ -52,6 +54,13 @@ export class MapComponent {
     autopan: true,
     closeButton: true,
     container: 'sidebar',
+  }
+
+  public sidebarPointListOptions: L.SidebarOptions = {
+    position: 'left',
+    autopan: true,
+    closeButton: true,
+    container: 'sidebarPointList',
   }
 
   onEachFeature(feature, layer) {
@@ -128,12 +137,21 @@ export class MapComponent {
       onEachFeature: this.onEachFeature
     }).addTo(this.map);
 
+    this.sidebarPointList = L.control.sidebar('sidebarPointList', {
+      closeButton: true,
+      position: 'left',
+      container: 'sidebarPointList',
+      autopan: true
+    });
+
     this.sidebar = L.control.sidebar('sidebar', {
       closeButton: true,
       position: 'right',
       container: 'sidebar',
       autopan: true
     });
+
+    this.map.addControl(this.sidebarPointList);
     this.map.addControl(this.sidebar);
   }
 
@@ -143,7 +161,6 @@ export class MapComponent {
   onClick(data, feature) {
     const sidebar = this.sidebar;
     sidebar.removePanel('text');
-
     let content=data.sourceTarget.feature.properties.popupContent;
     let panelHtml = `<h1>${content} </h1>`
     this.panelContent.pane = panelHtml;

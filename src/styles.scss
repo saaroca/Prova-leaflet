@@ -99,9 +99,12 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
       right: 0; }
     .leaflet-sidebar-right .leaflet-sidebar-content {
       left: 0;
-      right: 40px; }
+      right: 1px;
+      border: 2px solid rgba(0, 0, 0, 0.2);
+      border-radius: 4px; }
     .leaflet-sidebar.collapsed > .leaflet-sidebar-content {
-      overflow-y: hidden; }
+      overflow-y: hidden;
+    display:none; }
   
   .collapsed > .leaflet-sidebar-content {
     overflow-y: hidden; }
