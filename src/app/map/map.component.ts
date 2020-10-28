@@ -1,8 +1,9 @@
-import { AfterViewInit, Component, Pipe } from '@angular/core';
+import { AfterViewInit, Component, Pipe, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 import { TPO, PuntsInteres, ParcNou, Icona } from '../../assets/js/sample-geojson.js';
 import './js/leaflet-sidebar.js'
-
+import { NgxSidebarControlComponent } from '@runette/ngx-leaflet-sidebar'
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-map',
@@ -13,7 +14,7 @@ import './js/leaflet-sidebar.js'
 export class MapComponent {
 
   public map;
-
+  public sidebar;
   mbAttr = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, ' +
     '<a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ' +
     'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>';
@@ -23,6 +24,34 @@ export class MapComponent {
 
   ngAfterViewInit(): void {
     this.initMap();
+  }
+
+  private markerIcon = L.icon({
+    iconSize: [12, 21],
+    iconAnchor: [6, 21],
+    iconUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png',
+    shadowSize: [12, 21],
+    shadowAnchor: [6, 21],
+    shadowUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-shadow.png'
+  });
+
+
+  //sidebar variables
+  public showLegend: boolean;
+  public legendUrl: SafeResourceUrl;
+  private panelContent: L.Control.PanelOptions = {
+    id: 'text',
+    tab: '<i class="material-icons" title="text">description</i>',
+    position: 'top',
+    title: 'Caracetrístiques meteorològiques',
+    pane: ''
+  }
+
+  public sidebarOptions: L.SidebarOptions = {
+    position: 'right',
+    autopan: true,
+    closeButton: true,
+    container: 'sidebar',
   }
 
   onEachFeature(feature, layer) {
@@ -63,7 +92,6 @@ export class MapComponent {
         return feature.properties && feature.properties.style;
       },
 
-      onEachFeature: this.onEachFeature,
 
       pointToLayer: function (feature, latlng) {
         return L.circleMarker(latlng, {
@@ -75,7 +103,7 @@ export class MapComponent {
           fillOpacity: 0.8
         });
       }
-    }).addTo(this.map);
+    }).addTo(this.map).on('click', this.onClick, this);;
 
     L.geoJSON(TPO, {
 
@@ -100,44 +128,29 @@ export class MapComponent {
       onEachFeature: this.onEachFeature
     }).addTo(this.map);
 
-    var sidebar = L.control.sidebar('sidebar', {
+    this.sidebar = L.control.sidebar('sidebar', {
       closeButton: true,
-      position: 'left'
-  });
-  this.map.addControl(sidebar);
-
-  setTimeout(function () {
-      sidebar.show();
-  }, 500);
-
-  var marker = L.marker([51.2, 7]).addTo(this.map).on('click', function () {
-      sidebar.toggle();
-  });
-
-  this.map.on('click', function () {
-      sidebar.hide();
-  })
-
-  sidebar.on('show', function () {
-      console.log('Sidebar will be visible.');
-  });
-
-  sidebar.on('shown', function () {
-      console.log('Sidebar is visible.');
-  });
-
-  sidebar.on('hide', function () {
-      console.log('Sidebar will be hidden.');
-  });
-
-  sidebar.on('hidden', function () {
-      console.log('Sidebar is hidden.');
-  });
-
-  L.DomEvent.on(sidebar.getCloseButton(), 'click', function () {
-      console.log('Close button clicked.');
-  });
+      position: 'right',
+      container: 'sidebar',
+      autopan: true
+    });
+    this.map.addControl(this.sidebar);
   }
+
+
+  @ViewChild(NgxSidebarControlComponent, { static: false })  NgxSidebarControlComponent;
+
+  onClick(data, feature) {
+    const sidebar = this.sidebar;
+    sidebar.removePanel('text');
+
+    let content=data.sourceTarget.feature.properties.popupContent;
+    let panelHtml = `<h1>${content} </h1>`
+    this.panelContent.pane = panelHtml;
+    sidebar.addPanel(this.panelContent);
+    sidebar.open('text');
+  }
+
 
 };
 

@@ -11,6 +11,7 @@ var TPO = {
                 ]
             },
             "properties": {
+                "name": "parquesito",
                 "popupContent": "Aquesta es la línia de TPO A.",
                 "underConstruction": false
             },
@@ -26,6 +27,7 @@ var TPO = {
                 ]
             },
             "properties": {
+                "name": "parquesito",
                 "popupContent": "Aquesta es la línia de TPO B.",
                 //si el valor es false no es veu.
                 "underConstruction": false
@@ -42,6 +44,7 @@ var TPO = {
                 ]
             },
             "properties": {
+                "name": "parquesito",
                 "popupContent": "Aquesta es la línia de TPO C.",
                 "underConstruction": false
             },
@@ -87,6 +90,7 @@ var PuntsInteres = {
             },
             "type": "Feature",
             "properties": {
+                "name": "parquesito",
                 "popupContent": "Restaurant Ca la Tupina, Carrer Sant Ferriol nº18!"
             },
             "id": 51
@@ -100,6 +104,7 @@ var PuntsInteres = {
             },
             "type": "Feature",
             "properties": {
+                "name": "parquesito",
                 "popupContent": "Carrer Pare Roca nº 10!"
             },
             "id": 52
@@ -114,6 +119,7 @@ var PuntsInteres = {
             },
             "type": "Feature",
             "properties": {
+                "name": "parquesito",
                 "popupContent": "Parroquia de Sant Esteve d'Olot"
             },
             "id": 54
@@ -128,6 +134,7 @@ var PuntsInteres = {
             },
             "type": "Feature",
             "properties": {
+                "name": "parquesito",
                 "popupContent": "Mercadona"
             },
             "id": 55
@@ -142,6 +149,7 @@ var PuntsInteres = {
             },
             "type": "Feature",
             "properties": {
+                "name": "parquesito",
                 "popupContent": "Telepizza"
             },
             "id": 57
@@ -156,6 +164,7 @@ var PuntsInteres = {
             },
             "type": "Feature",
             "properties": {
+                "name": "parquesito",
                 "popupContent": "Parc de la mandra"
             },
             "id": 58
@@ -180,6 +189,7 @@ var PuntsInteres = {
 var ParcNou = {
     "type": "Feature",
     "properties": {
+        "name" : "qepasa",
         "popupContent": "Aquest es el terreny del parc nou",
         "style": {
             weight: 2,
