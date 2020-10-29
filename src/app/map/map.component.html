@@ -3,34 +3,11 @@
 
 <head>
   <meta charset="utf-8">
-  <title>Project1</title>
+  <title>Aplicació meteorològica SIGMA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" crossorigin="" />
-  <!-- <link rel="stylesheet" href="/styles.scss" /> -->
-
-  <!-- <link rel="stylesheet" href="../css/leaflet-sidebar.css" /> -->
-
-  <style>
-    body {
-      padding: 0;
-      margin: 0;
-    }
-
-    html,
-    body,
-    #map {
-      height: 100%;
-      font: 10pt "Helvetica Neue", Arial, Helvetica, sans-serif;
-    }
-
-    .lorem {
-      font-style: italic;
-      text-align: justify;
-      color: #AAA;
-    }
-  </style>
 </head>
 
 <body>
@@ -41,13 +18,7 @@
     <div class="leaflet-sidebar-tabs">
       <!-- top aligned tabs -->
       <ul role="tablist">
-        <li><a href="#home" role="tab"><i class="fa fa-bars active"></i></a></li>
-        <li><a href="#autopan" role="tab"><i class="fa fa-arrows"></i></a></li>
-      </ul>
-
-      <!-- bottom aligned tabs -->
-      <ul role="tablist">
-        <li><a href="https://github.com/nickpeihl/leaflet-sidebar-v2"><i class="fa fa-github"></i></a></li>
+        <li><a href="#home" role="tab"><i class="fa fa-bars" aria-hidden="true"></i></a></li>
       </ul>
     </div>
 
@@ -55,7 +26,7 @@
     <div class="leaflet-sidebar-content">
       <div class="leaflet-sidebar-pane" id="home">
         <h1 class="leaflet-sidebar-header">
-          Estacions Meteorlogiques
+          Estacions Meteorlògiques
           <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
         </h1>
 
@@ -126,12 +97,6 @@
     <div class="leaflet-sidebar-tabs">
       <!-- top aligned tabs -->
       <ul role="tablist">
-        <!-- <li><a href="#autopan" role="tab"><i class="material-icons" title="text">description</i></a></li> -->
-      </ul>
-
-      <!-- bottom aligned tabs -->
-      <ul role="tablist">
-        <li><a href="https://github.com/nickpeihl/leaflet-sidebar-v2"><i class="fa fa-github"></i></a></li>
       </ul>
     </div>
   </div>
@@ -145,9 +110,6 @@
   </div>
 
   <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js" crossorigin=""></script>
-  <!-- <script src="../../assets/js/leaflet-sidebar.js"></script> -->
-  <!-- <script src="../../assets/js/sample-geojson.js"> -->
-  <!-- </script> -->
 </body>
 
 </html>

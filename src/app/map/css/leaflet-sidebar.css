@@ -57,10 +57,11 @@
   top: 0;
   bottom: 0;
   height: 100%;
-  background-color: #fff;
+  background-color: transparent;
 }
 .leaflet-sidebar-left .leaflet-sidebar-tabs {
   left: 0;
+  height: 4%;
 }
 .leaflet-sidebar-right .leaflet-sidebar-tabs {
   display:none;
@@ -90,8 +91,7 @@
 }
 .leaflet-sidebar-tabs > li.active,
 .leaflet-sidebar-tabs > ul > li.active {
-  color: #fff;
-  background-color: #0074d9;
+  display:none
 }
 .leaflet-sidebar-tabs > li.disabled,
 .leaflet-sidebar-tabs > ul > li.disabled {
@@ -129,7 +129,7 @@
   overflow-y: auto;
 }
 .leaflet-sidebar-left .leaflet-sidebar-content {
-  left: 40px;
+  left: 0px;
   right: 0;
 }
 .leaflet-sidebar-right .leaflet-sidebar-content {
@@ -199,20 +199,22 @@
 }
 
 .leaflet-sidebar {
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.65);
+  box-shadow: 0 0px 0px rgba(0, 0, 0, 0.65);
 }
 @media (min-width: 768px) {
   .leaflet-sidebar {
     border-radius: 4px;
   }
   .leaflet-sidebar.leaflet-touch {
-    border: 2px solid rgba(0, 0, 0, 0.2);
+    border: 0px solid rgba(0, 0, 0, 0.2);
   }
 }
 
 .leaflet-sidebar-left.leaflet-touch {
+  left: 30px;
+  top: 18px;
   box-shadow: none;
-  border-right: 2px solid rgba(0, 0, 0, 0.2);
+  border-right: 0px solid rgba(0, 0, 0, 0.2);
 }
 
 @media (min-width: 768px) {
@@ -241,6 +243,7 @@
 
 .leaflet-sidebar-left.collapsed ~ .leaflet-control-container .leaflet-left {
   left: 50px;
+  border: 0px !important;
 }
 
 .leaflet-sidebar-right.leaflet-touch {
