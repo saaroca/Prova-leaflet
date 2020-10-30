@@ -1,14 +1,6 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~leaflet/dist/leaflet.css";
 
-.fa.fa-bars:before{
-  height:30px;
-  width:30px;
-}
-.fa.fa-bars {
- height: 30px;
- width: 30px;
-}
 .fa.fa-bars:hover {
   transform: scale(1.15, 1.15) !important;
 }
@@ -148,7 +140,7 @@ body {
   position: absolute;
   top: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(77, 77, 77, 0.95);
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -156,9 +148,18 @@ body {
   left: 40px;
   right: 0;
 }
+
+.leaflet-sidebar-tabs > ul > li > a {
+  display: none;
+}
+
+.tablist:hover {
+  background-color: transparent;
+}
+
 .leaflet-sidebar-right .leaflet-sidebar-content {
   left: 0;
-  right: 1px;
+  right: 5px;
   border: 2px solid rgba(0, 0, 0, 0.2);
   border-radius: 4px;
 }
@@ -205,6 +206,7 @@ body {
   font-size: 14.4pt;
   color: #fff;
   background-color: #0074d9;
+  text-align: center;
 }
 .leaflet-sidebar-right .leaflet-sidebar-header {
   padding-left: 40px;
