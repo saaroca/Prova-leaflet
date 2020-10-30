@@ -156,12 +156,12 @@ export class MapComponent {
   }
 
 
-  @ViewChild(NgxSidebarControlComponent, { static: false })  NgxSidebarControlComponent;
+  @ViewChild(NgxSidebarControlComponent, { static: false }) NgxSidebarControlComponent;
 
   onClick(data, feature) {
     const sidebar = this.sidebar;
     sidebar.removePanel('text');
-    let content=data.sourceTarget.feature.properties.popupContent;
+    let content = data.sourceTarget.feature.properties.popupContent;
     let panelHtml = `<h1>${content} </h1>`
     this.panelContent.pane = panelHtml;
     sidebar.addPanel(this.panelContent);

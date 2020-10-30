@@ -101,6 +101,7 @@
 .leaflet-sidebar-tabs > ul > li.disabled:hover {
   background: transparent;
 }
+
 .leaflet-sidebar-tabs > li.disabled > a,
 .leaflet-sidebar-tabs > ul > li.disabled > a {
   cursor: default;
@@ -115,6 +116,7 @@
   text-decoration: none;
   text-align: center;
   cursor: pointer;
+  text-shadow: 0 0 4px black;
 }
 .leaflet-sidebar-tabs > ul + ul {
   bottom: 0;
@@ -124,7 +126,7 @@
   position: absolute;
   top: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.95);
+  background-color: rgba(77, 77, 77, 0.95);
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -178,6 +180,7 @@
   font-size: 14.4pt;
   color: #fff;
   background-color: #0074d9;
+  text-align:center;
 }
 .leaflet-sidebar-right .leaflet-sidebar-header {
   padding-left: 40px;
@@ -211,7 +214,7 @@
 }
 
 .leaflet-sidebar-left.leaflet-touch {
-  left: 30px;
+  left: 20px;
   top: 20px;
   box-shadow: none;
   border-right: 0px solid rgba(0, 0, 0, 0.2);
