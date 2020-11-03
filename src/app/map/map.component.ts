@@ -4,8 +4,7 @@ import { TPO, PuntsInteres, ParcNou, Icona } from '../../assets/js/sample-geojso
 import './js/leaflet-sidebar.js'
 import { NgxSidebarControlComponent } from '@runette/ngx-leaflet-sidebar'
 import { SafeResourceUrl } from '@angular/platform-browser';
-import * as angular from 'angular'
-import '../../assets/js/angular-leaflet-directive.min.js';
+
 
 @Component({
   selector: 'app-map',
@@ -29,16 +28,6 @@ export class MapComponent {
   ngAfterViewInit(): void {
     this.initMap();
   }
-
-  private markerIcon = L.icon({
-    iconSize: [12, 21],
-    iconAnchor: [6, 21],
-    iconUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-icon.png',
-    shadowSize: [12, 21],
-    shadowAnchor: [6, 21],
-    shadowUrl: 'https://unpkg.com/leaflet@1.6.0/dist/images/marker-shadow.png'
-  });
-
 
   //sidebar variables
   public showLegend: boolean;
@@ -155,20 +144,12 @@ export class MapComponent {
 
     this.map.addControl(this.sidebarPointList);
     this.map.addControl(this.sidebar);
-
-    var app = angular.module('leaflet-app', ['leaflet-directive']);
-    app.controller('sidebarPointListController', ['$scope', '$location', function ($scope, $location) {
-      $scope.changeLocation = function (centerHash) {
-        // map.setView([36.8899, -121.8008], 12)
-      };
-
-    }]);
   }
 
-  onSave(n1, n2, z) {
+  //Metode on rep les coordenades i centra el mapa
+  centerMap(n1, n2, z) {
     this.map.setView([n1, n2], z)
   }
-
 
   @ViewChild(NgxSidebarControlComponent, { static: false }) NgxSidebarControlComponent;
 
@@ -181,7 +162,6 @@ export class MapComponent {
     sidebar.addPanel(this.panelContent);
     sidebar.open('text');
   }
-
 
 };
 
