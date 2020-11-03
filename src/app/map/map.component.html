@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="leaflet-app">
 
 <head>
   <meta charset="utf-8">
   <title>Aplicació meteorològica SIGMA</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
   <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css" crossorigin="" />
 </head>
 
-<body>
-
+<body ng-controller="sidebarPointListController">
+  <leaflet url-hash-center="yes"></leaflet>
   <!-- Sidebar esquerre -->
   <div id="sidebarPointList" class="leaflet-sidebar collapsed">
+    <leaflet center="london" width="100%"></leaflet>
     <!-- nav tabs -->
     <div class="leaflet-sidebar-tabs">
       <!-- top aligned tabs -->
@@ -28,15 +28,16 @@
           Estacions Meteorlògiques
           <span class="leaflet-sidebar-close"><i class="fa fa-caret-left"></i></span>
         </h1>
-        <h2>Estacions meteorològiques de la Garrotxa</h2>
+        <h2 style="text-align:center">Estacions meteorològiques de la Garrotxa</h2>
         <ul>
-          <li><a href="#" ng-click="">MERCADONA</a></li>
           <br>
-          <li><a href="#">TELEPIZZA</a></li>
+          <li><a class="sideTitle" (click)="onSave(42.181235, 2.488137, 16)">Mercadona</a></li>
           <br>
-          <li><a href="#">CARRER PARE ROCA</a></li>
+          <li><a class="sideTitle" (click)="onSave(42.180909, 2.484339, 16)">Telepizza</a></li>
           <br>
-          <li><a href="#">CA LA TUPINA</a></li>
+          <li><a class="sideTitle" (click)="onSave(42.182054, 2.483448, 16)">Carrer Pare Roca</a></li>
+          <br>
+          <li><a class="sideTitle" (click)="onSave(42.182308, 2.485959, 16)">Ca La </a></li>
         </ul>
       </div>
     </div>

@@ -1,9 +1,11 @@
-import { AfterViewInit, Component, Pipe, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import * as L from 'leaflet';
 import { TPO, PuntsInteres, ParcNou, Icona } from '../../assets/js/sample-geojson.js';
 import './js/leaflet-sidebar.js'
 import { NgxSidebarControlComponent } from '@runette/ngx-leaflet-sidebar'
-import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import { SafeResourceUrl } from '@angular/platform-browser';
+import * as angular from 'angular'
+import '../../assets/js/angular-leaflet-directive.min.js';
 
 @Component({
   selector: 'app-map',
@@ -153,6 +155,18 @@ export class MapComponent {
 
     this.map.addControl(this.sidebarPointList);
     this.map.addControl(this.sidebar);
+
+    var app = angular.module('leaflet-app', ['leaflet-directive']);
+    app.controller('sidebarPointListController', ['$scope', '$location', function ($scope, $location) {
+      $scope.changeLocation = function (centerHash) {
+        // map.setView([36.8899, -121.8008], 12)
+      };
+
+    }]);
+  }
+
+  onSave(n1, n2, z) {
+    this.map.setView([n1, n2], z)
   }
 
 
@@ -177,6 +191,8 @@ var baseballIcon = L.icon({
   iconAnchor: [16, 37],
   popupAnchor: [0, -28]
 });
+
+
 
 
 
